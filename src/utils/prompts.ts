@@ -26,7 +26,7 @@ export const createModel = (settings: ModelSettings) => {
   };
 
   const baseOptions = {
-    basePath: _settings?.customEndPoint || undefined,
+    basePath: _settings?.customEndPoint || process.env.OPENAI_API_BASE_URL || undefined,
   };
 
   return new OpenAI(options, baseOptions);
