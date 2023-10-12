@@ -18,5 +18,6 @@ const config = {
     return config;
   },
   output: "standalone",
+  productionBrowserSourceMaps: true,
 };
 export default config;
