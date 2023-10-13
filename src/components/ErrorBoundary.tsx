@@ -1,10 +1,10 @@
 import React from "react";
-export default class ErrorBoundary extends React.Component {
+export default class ErrorBoundary extends React.Component<any, any> {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
   }
-  state={}
+  state={hasError:false}
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
