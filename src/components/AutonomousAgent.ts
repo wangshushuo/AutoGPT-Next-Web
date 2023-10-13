@@ -344,9 +344,14 @@ class AutonomousAgent {
       analysis: analysis,
       customLanguage: this.customLanguage,
     };
-    const res = await this.post("/api/agent/execute", data);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument
-    return res.data.response as string;
+    try {
+      const res = await this.post("/api/agent/execute", data);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument
+      return res.data.response as string;
+    } catch (error) {
+      console.error(error);
+      return "";
+    }
   }
 
   private async post(url: string, data: RequestBody) {
