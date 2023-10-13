@@ -5,22 +5,25 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/default.css";
+import ErrorBoundary from "./ErrorBoundary";
 
 const MarkdownRenderer = ({ children }) => (
-  <ReactMarkdown
-    remarkPlugins={[remarkGfm]}
-    rehypePlugins={[rehypeHighlight]}
-    components={{
-      pre: CustomPre,
-      code: CustomCodeBlock,
-      a: (props) => CustomLink({ children: props.children, href: props.href }),
-      p: (props) => <p className="mb-4">{props.children}</p>,
-      ul: (props) => <ul className="ml-8 list-disc">{props.children}</ul>,
-      ol: (props) => <ol className="ml-8 list-decimal">{props.children}</ol>,
-    }}
-  >
-    {children}
-  </ReactMarkdown>
+  <ErrorBoundary>
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      rehypePlugins={[rehypeHighlight]}
+      components={{
+        pre: CustomPre,
+        code: CustomCodeBlock,
+        a: (props) => CustomLink({ children: props.children, href: props.href }),
+        p: (props) => <p className="mb-4">{props.children}</p>,
+        ul: (props) => <ul className="ml-8 list-disc">{props.children}</ul>,
+        ol: (props) => <ol className="ml-8 list-decimal">{props.children}</ol>,
+      }}
+    >
+      {children}
+    </ReactMarkdown>
+  </ErrorBoundary>
 );
 
 const CustomPre = ({ children }: { children: ReactNode }) => {

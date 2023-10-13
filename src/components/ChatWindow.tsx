@@ -407,7 +407,8 @@ const ChatMessage = ({
         <>
           <hr className="my-2 border-[1px] border-white/20" />
           <div className="prose max-w-none">
-            <MarkdownRenderer>{message.info || ""}</MarkdownRenderer>
+          {message.info || ""}
+            {/* <MarkdownRenderer>{message.info || ""}</MarkdownRenderer> */}
           </div>
         </>
       ) : (
